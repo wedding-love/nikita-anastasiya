@@ -289,7 +289,7 @@
       letter-spacing: 2px;
     }
 
-    /* ===== ПОЛНОСТЬЮ ИСПРАВЛЕННЫЙ КАЛЕНДАРЬ ===== */
+    /* ===== КАЛЕНДАРЬ С СЕРДЕЧКОМ ===== */
     .calendar-wrapper {
       width: 100%;
       max-width: 340px;
@@ -325,25 +325,25 @@
       padding-bottom: 8px;
     }
     
-    .calendar-day-highlight {
+    .calendar-day-heart {
       position: relative;
       font-weight: 500;
-      color: #2d4c3e;
+      color: #be2e2e;
       font-size: 16px;
+      background: rgba(190, 46, 46, 0.1);
+      border-radius: 30px;
+      width: 80%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
-    .calendar-day-highlight::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      background: #fff;
-      border-radius: 50%;
-      z-index: -1;
-      border: 1px solid rgba(45,76,62,0.2);
+    /* Сердечко вместо обычного выделения */
+    .calendar-day-heart i {
+      font-size: 18px;
+      margin-left: 4px;
+      color: #be2e2e;
     }
     
     .calendar-other-month {
@@ -438,8 +438,8 @@
       .serif-title-white { font-size: 25px; }
       .calendar-cell { font-size: 12px; }
       .calendar-header { font-size: 9px; }
-      .calendar-day-highlight { font-size: 14px; }
-      .calendar-day-highlight::before { width: 26px; height: 26px; }
+      .calendar-day-heart { font-size: 14px; }
+      .calendar-day-heart i { font-size: 12px; }
     }
   </style>
 </head>
@@ -472,7 +472,8 @@
         <div class="photo-child" style="background-image: url('мальчик.png');"></div>
         <div class="photo-child" style="background-image: url('девочка.png');"></div>
       </div>
-      <p class="hero-quote">«Однажды и навсегда...»</p>
+      <!-- ЗАМЕНА ТЕКСТА НА НОВЫЙ -->
+      <p class="hero-quote">«Даже если весь мир сойдет с ума,<br>у меня есть ты, у тебя есть я»</p>
       <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 18px; color: #888; margin-bottom: 14px;">
         — так мы ответили друг другу,<br>когда поняли, что встретили свою судьбу
       </p>
@@ -490,7 +491,7 @@
       </p>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ (АБСОЛЮТНО РОВНЫЙ, АДАПТИВНЫЙ) -->
+    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ С СЕРДЕЧКОМ -->
     <section class="reveal">
       <h2 class="serif-title">Когда?</h2>
       <p class="serif-subtitle">октябрь, 2026</p>
@@ -506,12 +507,15 @@
           <div class="calendar-cell calendar-header">СБ</div>
           <div class="calendar-cell calendar-header">ВС</div>
           
-          <!-- Строка 1 -->
+          <!-- Строка 1: 28,29,30 сентября (другой месяц) + 1,2,3,4 октября -->
           <div class="calendar-cell calendar-other-month">28</div>
           <div class="calendar-cell calendar-other-month">29</div>
           <div class="calendar-cell calendar-other-month">30</div>
           <div class="calendar-cell">1</div>
-          <div class="calendar-cell calendar-day-highlight">2</div>
+          <!-- Ячейка 2 октября с сердечком -->
+          <div class="calendar-cell">
+            <span class="calendar-day-heart">2 <i class="fas fa-heart"></i></span>
+          </div>
           <div class="calendar-cell">3</div>
           <div class="calendar-cell">4</div>
           
@@ -628,12 +632,12 @@
       </div>
     </section>
 
-    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ -->
+    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — ИСПРАВЛЕНО "ВШЕ ЛОТО" НА "ВАШЕ ЛОТО" -->
     <section class="section-primary reveal">
       <h2 class="serif-title-white">Пожелания</h2>
       <p class="serif-subtitle" style="color: rgba(255,255,255,0.7); font-size: 17px;">wishes</p>
       <p class="invitation-text" style="font-size: 20px;">
-        Дорогие наши гости! Для нас большая радость — просто видеть вас в этот день. Если вы захотите нас порадовать подарком, знайте: мы будем бесконечно тронуты, если это будет билет «Супер Лото» или «Вше Лото». Для нас такой подарок — как частичка вашей удачи и вера в наше счастье. А цветы… пусть они останутся для нас чем-то личным и совсем необязательным. Спасибо, что вы у нас есть!
+        Дорогие наши гости! Для нас большая радость — просто видеть вас в этот день. Если вы захотите нас порадовать подарком, знайте: мы будем бесконечно тронуты, если это будет билет «Супер Лото» или <strong>«Ваше Лото»</strong>. Для нас такой подарок — как частичка вашей удачи и вера в наше счастье. А цветы… пусть они останутся для нас чем-то личным и совсем необязательным. Спасибо, что вы у нас есть!
       </p>
     </section>
 
@@ -693,9 +697,7 @@
     }
     window.addEventListener("scroll", revealOnScroll);
     window.addEventListener("load", function() {
-      if (!document.getElementById('welcome-screen').classList.contains('fade-out')) {
-        // Не показываем основной контент, пока не кликнут
-      } else {
+      if (document.getElementById('welcome-screen').classList.contains('fade-out')) {
         revealOnScroll();
       }
     });

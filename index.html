@@ -289,7 +289,7 @@
       letter-spacing: 2px;
     }
 
-    /* ===== КАЛЕНДАРЬ: ДАТА ВНУТРИ ПУЛЬСИРУЮЩЕГО ЗЕЛЕНОГО СЕРДЦА ===== */
+    /* ===== КАЛЕНДАРЬ: ДАТА ВНУТРИ ПРОЗРАЧНОГО ПУЛЬСИРУЮЩЕГО СЕРДЦА, ИДЕАЛЬНЫЙ ЦЕНТР ===== */
     .calendar-wrapper {
       width: 100%;
       max-width: 340px;
@@ -325,53 +325,56 @@
       padding-bottom: 8px;
     }
     
-    /* Контейнер для даты внутри сердечка */
+    /* Сердце с прозрачным фоном (clip-path без фона, только заливка) */
     .heart-date-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       background: #2d4c3e;
-      clip-path: path("M21 35.7 L6.5 22.2 C2.5 18.5 2.5 12.5 6.5 8.8 C10.5 5.1 17 5.1 21 8.8 L21 8.8 C25 5.1 31.5 5.1 35.5 8.8 C39.5 12.5 39.5 18.5 35.5 22.2 L21 35.7 Z");
+      /* Идеальная форма сердца через clip-path — без лишних белых краёв */
+      clip-path: path("M23 38.5 L7.5 23.8 C3.5 20.1 3.5 14 7.5 10.3 C11.5 6.6 18 6.6 23 10.3 L23 10.3 C28 6.6 34.5 6.6 38.5 10.3 C42.5 14 42.5 20.1 38.5 23.8 L23 38.5 Z");
       background: #2d4c3e;
       transition: all 0.2s ease;
-      animation: heartPulse 1.4s ease-in-out infinite;
-      box-shadow: 0 2px 8px rgba(45, 76, 62, 0.3);
+      animation: heartGlowPulse 1.5s ease-in-out infinite;
+      /* Добавляем мягкую тень, но без белого ободка */
+      box-shadow: 0 3px 12px rgba(45, 76, 62, 0.4);
+      /* Абсолютно прозрачные края — clip-path обрезает всё лишнее */
     }
     
-    /* Само сердце с цифрой 2 внутри */
+    /* Цифра 2 — идеально отцентрована */
     .calendar-heart {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 500;
       font-family: 'Inter', sans-serif;
       line-height: 1;
       text-align: center;
-      display: block;
-      margin-top: -2px; /* небольшая коррекция по вертикали для идеального центрирования */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      margin-top: 2px; /* микро-коррекция визуального центра */
     }
     
-    /* Красивая пульсация */
-    @keyframes heartPulse {
+    /* Красивая пульсация с лёгким изменением размера и свечения */
+    @keyframes heartGlowPulse {
       0% {
         transform: scale(1);
-        opacity: 1;
         background: #2d4c3e;
-        box-shadow: 0 2px 8px rgba(45, 76, 62, 0.3);
+        box-shadow: 0 3px 12px rgba(45, 76, 62, 0.4);
       }
       50% {
         transform: scale(1.12);
-        opacity: 0.95;
-        background: #3b6a55;
-        box-shadow: 0 4px 16px rgba(45, 76, 62, 0.5);
+        background: #427a61;
+        box-shadow: 0 5px 20px rgba(45, 76, 62, 0.7);
       }
       100% {
         transform: scale(1);
-        opacity: 1;
         background: #2d4c3e;
-        box-shadow: 0 2px 8px rgba(45, 76, 62, 0.3);
+        box-shadow: 0 3px 12px rgba(45, 76, 62, 0.4);
       }
     }
     
@@ -381,6 +384,32 @@
     
     .calendar-empty {
       /* Пустая ячейка */
+    }
+
+    /* Адаптивность для маленьких экранов — сердце уменьшается пропорционально */
+    @media (max-width: 420px) {
+      .heart-date-container {
+        width: 38px;
+        height: 38px;
+      }
+      .calendar-heart {
+        font-size: 20px;
+        margin-top: 1px;
+      }
+      .calendar-cell {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .heart-date-container {
+        width: 34px;
+        height: 34px;
+      }
+      .calendar-heart {
+        font-size: 18px;
+        margin-top: 1px;
+      }
     }
 
     .timeline { 
@@ -459,17 +488,6 @@
     .contact-link { color: #2d4c3e; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; border-bottom: 1px solid #2d4c3e; margin: 0 14px; font-size: 16px; letter-spacing: 2px; }
     .farewell-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 28px; color: #2d4c3e; margin-top: 38px; line-height: 1.6; }
 
-    @media (max-width: 420px) {
-      section { padding: 48px 16px; }
-      .hero-names { font-size: 38px; letter-spacing: 4px; }
-      .hero-date { font-size: 30px; letter-spacing: 5px; }
-      .serif-title { font-size: 27px; }
-      .serif-title-white { font-size: 25px; }
-      .calendar-cell { font-size: 12px; }
-      .calendar-header { font-size: 9px; }
-      .heart-date-container { width: 34px; height: 34px; }
-      .calendar-heart { font-size: 17px; }
-    }
   </style>
 </head>
 <body>
@@ -519,7 +537,7 @@
       </p>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ — ДАТА 2 ВНУТРИ ПУЛЬСИРУЮЩЕГО ЗЕЛЕНОГО СЕРДЦА -->
+    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ — ДАТА 2 ВНУТРИ ПУЛЬСИРУЮЩЕГО ЗЕЛЕНОГО СЕРДЦА (ПРОЗРАЧНЫЕ КРАЯ, ЦЕНТРИРОВАНИЕ) -->
     <section class="reveal">
       <h2 class="serif-title">Когда?</h2>
       <p class="serif-subtitle">октябрь, 2026</p>
@@ -540,7 +558,7 @@
           <div class="calendar-cell calendar-other-month">29</div>
           <div class="calendar-cell calendar-other-month">30</div>
           <div class="calendar-cell">1</div>
-          <!-- 2 октября: дата внутри пульсирующего сердечка -->
+          <!-- 2 октября: дата внутри идеального пульсирующего сердца (без фонового кружка) -->
           <div class="calendar-cell">
             <div class="heart-date-container">
               <span class="calendar-heart">2</span>
@@ -662,7 +680,7 @@
       </div>
     </section>
 
-    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — "ВАШЕ ЛОТО" ОБЫЧНЫЙ ТЕКСТ (БЕЗ ЖИРНОСТИ) -->
+    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — "ВАШЕ ЛОТО" обычным текстом -->
     <section class="section-primary reveal">
       <h2 class="serif-title-white">Пожелания</h2>
       <p class="serif-subtitle" style="color: rgba(255,255,255,0.7); font-size: 17px;">wishes</p>

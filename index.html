@@ -289,7 +289,7 @@
       letter-spacing: 2px;
     }
 
-    /* ===== КАЛЕНДАРЬ С ЗЕЛЕНЫМ СЕРДЕЧКОМ ===== */
+    /* ===== КАЛЕНДАРЬ: ДАТА ВНУТРИ ПУЛЬСИРУЮЩЕГО ЗЕЛЕНОГО СЕРДЦА ===== */
     .calendar-wrapper {
       width: 100%;
       max-width: 340px;
@@ -325,24 +325,54 @@
       padding-bottom: 8px;
     }
     
-    /* Зеленое сердечко — чуть крупнее, без кружка */
-    .calendar-day-heart {
-      position: relative;
-      display: inline-flex;
+    /* Контейнер для даты внутри сердечка */
+    .heart-date-container {
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      font-weight: 500;
-      color: #2d4c3e;
-      font-size: 18px; /* чуть крупнее */
-      background: transparent;
-      padding: 0;
+      position: relative;
+      width: 42px;
+      height: 42px;
+      background: #2d4c3e;
+      clip-path: path("M21 35.7 L6.5 22.2 C2.5 18.5 2.5 12.5 6.5 8.8 C10.5 5.1 17 5.1 21 8.8 L21 8.8 C25 5.1 31.5 5.1 35.5 8.8 C39.5 12.5 39.5 18.5 35.5 22.2 L21 35.7 Z");
+      background: #2d4c3e;
+      transition: all 0.2s ease;
+      animation: heartPulse 1.4s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(45, 76, 62, 0.3);
     }
     
-    .calendar-day-heart i {
-      font-size: 18px;
-      color: #2d4c3e;
-      margin-left: 2px;
+    /* Само сердце с цифрой 2 внутри */
+    .calendar-heart {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+      text-align: center;
+      display: block;
+      margin-top: -2px; /* небольшая коррекция по вертикали для идеального центрирования */
+    }
+    
+    /* Красивая пульсация */
+    @keyframes heartPulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+        background: #2d4c3e;
+        box-shadow: 0 2px 8px rgba(45, 76, 62, 0.3);
+      }
+      50% {
+        transform: scale(1.12);
+        opacity: 0.95;
+        background: #3b6a55;
+        box-shadow: 0 4px 16px rgba(45, 76, 62, 0.5);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+        background: #2d4c3e;
+        box-shadow: 0 2px 8px rgba(45, 76, 62, 0.3);
+      }
     }
     
     .calendar-other-month {
@@ -429,11 +459,6 @@
     .contact-link { color: #2d4c3e; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; border-bottom: 1px solid #2d4c3e; margin: 0 14px; font-size: 16px; letter-spacing: 2px; }
     .farewell-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 28px; color: #2d4c3e; margin-top: 38px; line-height: 1.6; }
 
-    /* Стиль для обычного текста "Ваше Лото" — без жирности */
-    .lottery-text {
-      font-weight: 300;
-    }
-
     @media (max-width: 420px) {
       section { padding: 48px 16px; }
       .hero-names { font-size: 38px; letter-spacing: 4px; }
@@ -442,8 +467,8 @@
       .serif-title-white { font-size: 25px; }
       .calendar-cell { font-size: 12px; }
       .calendar-header { font-size: 9px; }
-      .calendar-day-heart { font-size: 16px; }
-      .calendar-day-heart i { font-size: 14px; }
+      .heart-date-container { width: 34px; height: 34px; }
+      .calendar-heart { font-size: 17px; }
     }
   </style>
 </head>
@@ -494,7 +519,7 @@
       </p>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ С ЗЕЛЕНЫМ СЕРДЕЧКОМ (БЕЗ КРУЖКА) -->
+    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ — ДАТА 2 ВНУТРИ ПУЛЬСИРУЮЩЕГО ЗЕЛЕНОГО СЕРДЦА -->
     <section class="reveal">
       <h2 class="serif-title">Когда?</h2>
       <p class="serif-subtitle">октябрь, 2026</p>
@@ -515,9 +540,11 @@
           <div class="calendar-cell calendar-other-month">29</div>
           <div class="calendar-cell calendar-other-month">30</div>
           <div class="calendar-cell">1</div>
-          <!-- 2 октября: просто зелёное сердечко рядом с цифрой, без кружка -->
+          <!-- 2 октября: дата внутри пульсирующего сердечка -->
           <div class="calendar-cell">
-            <span class="calendar-day-heart">2 <i class="fas fa-heart"></i></span>
+            <div class="heart-date-container">
+              <span class="calendar-heart">2</span>
+            </div>
           </div>
           <div class="calendar-cell">3</div>
           <div class="calendar-cell">4</div>
@@ -635,7 +662,7 @@
       </div>
     </section>
 
-    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — "ВАШЕ ЛОТО" ОБЫЧНЫМ ТЕКСТОМ, НЕ ЖИРНЫМ -->
+    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — "ВАШЕ ЛОТО" ОБЫЧНЫЙ ТЕКСТ (БЕЗ ЖИРНОСТИ) -->
     <section class="section-primary reveal">
       <h2 class="serif-title-white">Пожелания</h2>
       <p class="serif-subtitle" style="color: rgba(255,255,255,0.7); font-size: 17px;">wishes</p>

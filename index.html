@@ -38,7 +38,7 @@
       width: 100%;
     }
 
-    /* ---------- СТАРТОВЫЙ ЭКРАН ---------- */
+    /* ---------- СТАРТОВЫЙ ЭКРАН (уменьшенный шрифт) ---------- */
     .welcome-overlay {
       position: fixed;
       top: 0;
@@ -76,9 +76,9 @@
       margin-bottom: auto;
     }
     .title-top {
-      font-size: 11px;        /* Уменьшен с 13px */
+      font-size: 11px;        /* Уменьшено с 13px */
       font-weight: 300;
-      letter-spacing: 4px;    /* Чуть плотнее */
+      letter-spacing: 4px;
       text-transform: uppercase;
       opacity: 0.9;
     }
@@ -86,7 +86,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 300;
-      font-size: 46px;        /* Уменьшен с 56px для элегантности */
+      font-size: 46px;        /* Уменьшено с 56px */
       line-height: 0.95;
       letter-spacing: 1px;
       text-transform: none;
@@ -101,14 +101,14 @@
       margin-top: 10px;
     }
     .hint-text {
-      font-size: 10px;        /* Уменьшен с 12px */
+      font-size: 10px;        /* Уменьшено с 12px */
       font-weight: 300;
       letter-spacing: 1px;
       opacity: 0.85;
     }
     
     .pointer-image-wrapper {
-      width: 52px;            /* Чуть меньше */
+      width: 52px;
       height: 52px;
       display: flex;
       justify-content: center;
@@ -289,7 +289,7 @@
       letter-spacing: 2px;
     }
 
-    /* ===== КАЛЕНДАРЬ: ИДЕАЛЬНОЕ СЕРДЦЕ, ТОЛЬКО САМО СЕРДЦЕ, ПУЛЬСАЦИЯ, ИДЕАЛЬНЫЙ ЦЕНТР ===== */
+    /* ===== ИСПРАВЛЕННОЕ СЕРДЦЕ: ИДЕАЛЬНЫЙ ЦЕНТР, ЦИФРА НЕ ВЫЛЕЗАЕТ ===== */
     .calendar-wrapper {
       width: 100%;
       max-width: 340px;
@@ -325,54 +325,54 @@
       padding-bottom: 8px;
     }
     
-    /* Абсолютно чистое сердце: прозрачный фон, только заливка #2d4c3e, идеальные пропорции */
+    /* Контейнер сердца — точный размер, никаких искажений */
     .heart-date-container {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 46px;
       height: 46px;
-      /* Сердце через clip-path — без фона, без белых ореолов, только форма */
-      clip-path: path("M23 38.5 L7.5 23.8 C3.5 20.1 3.5 14 7.5 10.3 C11.5 6.6 18 6.6 23 10.3 L23 10.3 C28 6.6 34.5 6.6 38.5 10.3 C42.5 14 42.5 20.1 38.5 23.8 L23 38.5 Z");
+      /* Идеальная форма сердца через clip-path (классическая пропорция) */
+      clip-path: path("M 23,38 C 23,38 5,24 5,15 C 5,8 12,5 17,8 C 20,10 23,14 23,14 C 23,14 26,10 29,8 C 34,5 41,8 41,15 C 41,24 23,38 23,38 Z");
       background: #2d4c3e;
       transition: all 0.2s ease;
-      animation: heartElegantPulse 1.6s ease-in-out infinite;
-      /* мягкая тень — но без белого ободка, так как clip-path всё обрезает */
-      box-shadow: 0 4px 14px rgba(45, 76, 62, 0.35);
+      animation: heartFixedPulse 1.5s ease-in-out infinite;
+      box-shadow: 0 4px 12px rgba(45, 76, 62, 0.4);
+      /* Жестко фиксируем внутреннее содержимое по центру */
+      overflow: visible;
     }
     
-    /* Цифра 2 — жестко центрирована (flex + line-height) */
+    /* Цифра 2 — строго по центру, не вылазит за пределы */
     .calendar-heart {
       color: #ffffff;
       font-size: 24px;
-      font-weight: 500;
+      font-weight: 600;
       font-family: 'Inter', sans-serif;
       line-height: 1;
       text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      margin-top: 2px; /* микро-коррекция для визуального идеала */
+      display: inline-block;
+      /* Идеальное центрирование без смещений */
+      margin: 0;
+      padding: 0;
+      transform: translateY(1px); /* микро-коррекция для визуального баланса */
     }
     
-    /* Только пульсация без каких-либо дополнительных элементов */
-    @keyframes heartElegantPulse {
+    /* Пульсация без деформации содержимого */
+    @keyframes heartFixedPulse {
       0% {
         transform: scale(1);
         background: #2d4c3e;
-        box-shadow: 0 4px 14px rgba(45, 76, 62, 0.35);
+        box-shadow: 0 4px 12px rgba(45, 76, 62, 0.4);
       }
-      55% {
-        transform: scale(1.1);
+      50% {
+        transform: scale(1.08);
         background: #427a61;
-        box-shadow: 0 8px 22px rgba(45, 76, 62, 0.6);
+        box-shadow: 0 8px 20px rgba(45, 76, 62, 0.6);
       }
       100% {
         transform: scale(1);
         background: #2d4c3e;
-        box-shadow: 0 4px 14px rgba(45, 76, 62, 0.35);
+        box-shadow: 0 4px 12px rgba(45, 76, 62, 0.4);
       }
     }
     
@@ -388,10 +388,7 @@
       }
       .calendar-heart {
         font-size: 20px;
-        margin-top: 1px;
-      }
-      .calendar-cell {
-        font-size: 12px;
+        transform: translateY(1px);
       }
     }
 
@@ -402,7 +399,7 @@
       }
       .calendar-heart {
         font-size: 18px;
-        margin-top: 1px;
+        transform: translateY(1px);
       }
     }
 
@@ -531,7 +528,7 @@
       </p>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ — ТОЛЬКО СЕРДЦЕ, ИДЕАЛЬНОЕ, ПУЛЬСАЦИЯ, БЕЗ ПРОБЛЕМ С ВЫЛАЗИВАНИЕМ -->
+    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ — ИСПРАВЛЕННОЕ СЕРДЦЕ (ЦИФРА ПО ЦЕНТРУ, НЕ ВЫЛЕЗАЕТ) -->
     <section class="reveal">
       <h2 class="serif-title">Когда?</h2>
       <p class="serif-subtitle">октябрь, 2026</p>
@@ -552,7 +549,7 @@
           <div class="calendar-cell calendar-other-month">29</div>
           <div class="calendar-cell calendar-other-month">30</div>
           <div class="calendar-cell">1</div>
-          <!-- 2 октября: сердце чистое, прозрачное по краям, пульсирует, центр идеальный -->
+          <!-- 2 октября: идеальное сердце с цифрой 2 по центру -->
           <div class="calendar-cell">
             <div class="heart-date-container">
               <span class="calendar-heart">2</span>

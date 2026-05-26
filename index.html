@@ -289,7 +289,7 @@
       letter-spacing: 2px;
     }
 
-    /* ===== КАЛЕНДАРЬ С СЕРДЕЧКОМ ===== */
+    /* ===== КАЛЕНДАРЬ С ЗЕЛЕНЫМ СЕРДЕЧКОМ ===== */
     .calendar-wrapper {
       width: 100%;
       max-width: 340px;
@@ -325,25 +325,24 @@
       padding-bottom: 8px;
     }
     
+    /* Зеленое сердечко — чуть крупнее, без кружка */
     .calendar-day-heart {
       position: relative;
-      font-weight: 500;
-      color: #be2e2e;
-      font-size: 16px;
-      background: rgba(190, 46, 46, 0.1);
-      border-radius: 30px;
-      width: 80%;
-      height: 80%;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 5px;
+      font-weight: 500;
+      color: #2d4c3e;
+      font-size: 18px; /* чуть крупнее */
+      background: transparent;
+      padding: 0;
     }
     
-    /* Сердечко вместо обычного выделения */
     .calendar-day-heart i {
       font-size: 18px;
-      margin-left: 4px;
-      color: #be2e2e;
+      color: #2d4c3e;
+      margin-left: 2px;
     }
     
     .calendar-other-month {
@@ -430,6 +429,11 @@
     .contact-link { color: #2d4c3e; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; border-bottom: 1px solid #2d4c3e; margin: 0 14px; font-size: 16px; letter-spacing: 2px; }
     .farewell-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 28px; color: #2d4c3e; margin-top: 38px; line-height: 1.6; }
 
+    /* Стиль для обычного текста "Ваше Лото" — без жирности */
+    .lottery-text {
+      font-weight: 300;
+    }
+
     @media (max-width: 420px) {
       section { padding: 48px 16px; }
       .hero-names { font-size: 38px; letter-spacing: 4px; }
@@ -438,8 +442,8 @@
       .serif-title-white { font-size: 25px; }
       .calendar-cell { font-size: 12px; }
       .calendar-header { font-size: 9px; }
-      .calendar-day-heart { font-size: 14px; }
-      .calendar-day-heart i { font-size: 12px; }
+      .calendar-day-heart { font-size: 16px; }
+      .calendar-day-heart i { font-size: 14px; }
     }
   </style>
 </head>
@@ -472,7 +476,6 @@
         <div class="photo-child" style="background-image: url('мальчик.png');"></div>
         <div class="photo-child" style="background-image: url('девочка.png');"></div>
       </div>
-      <!-- ЗАМЕНА ТЕКСТА НА НОВЫЙ -->
       <p class="hero-quote">«Даже если весь мир сойдет с ума,<br>у меня есть ты, у тебя есть я»</p>
       <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 18px; color: #888; margin-bottom: 14px;">
         — так мы ответили друг другу,<br>когда поняли, что встретили свою судьбу
@@ -491,7 +494,7 @@
       </p>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ С СЕРДЕЧКОМ -->
+    <!-- СЕКЦИЯ 3: КАЛЕНДАРЬ С ЗЕЛЕНЫМ СЕРДЕЧКОМ (БЕЗ КРУЖКА) -->
     <section class="reveal">
       <h2 class="serif-title">Когда?</h2>
       <p class="serif-subtitle">октябрь, 2026</p>
@@ -507,12 +510,12 @@
           <div class="calendar-cell calendar-header">СБ</div>
           <div class="calendar-cell calendar-header">ВС</div>
           
-          <!-- Строка 1: 28,29,30 сентября (другой месяц) + 1,2,3,4 октября -->
+          <!-- Строка 1: 28,29,30 сентября + 1,2,3,4 октября -->
           <div class="calendar-cell calendar-other-month">28</div>
           <div class="calendar-cell calendar-other-month">29</div>
           <div class="calendar-cell calendar-other-month">30</div>
           <div class="calendar-cell">1</div>
-          <!-- Ячейка 2 октября с сердечком -->
+          <!-- 2 октября: просто зелёное сердечко рядом с цифрой, без кружка -->
           <div class="calendar-cell">
             <span class="calendar-day-heart">2 <i class="fas fa-heart"></i></span>
           </div>
@@ -632,12 +635,12 @@
       </div>
     </section>
 
-    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — ИСПРАВЛЕНО "ВШЕ ЛОТО" НА "ВАШЕ ЛОТО" -->
+    <!-- СЕКЦИЯ 8: ПОЖЕЛАНИЯ — "ВАШЕ ЛОТО" ОБЫЧНЫМ ТЕКСТОМ, НЕ ЖИРНЫМ -->
     <section class="section-primary reveal">
       <h2 class="serif-title-white">Пожелания</h2>
       <p class="serif-subtitle" style="color: rgba(255,255,255,0.7); font-size: 17px;">wishes</p>
       <p class="invitation-text" style="font-size: 20px;">
-        Дорогие наши гости! Для нас большая радость — просто видеть вас в этот день. Если вы захотите нас порадовать подарком, знайте: мы будем бесконечно тронуты, если это будет билет «Супер Лото» или <strong>«Ваше Лото»</strong>. Для нас такой подарок — как частичка вашей удачи и вера в наше счастье. А цветы… пусть они останутся для нас чем-то личным и совсем необязательным. Спасибо, что вы у нас есть!
+        Дорогие наши гости! Для нас большая радость — просто видеть вас в этот день. Если вы захотите нас порадовать подарком, знайте: мы будем бесконечно тронуты, если это будет билет «Супер Лото» или «Ваше Лото». Для нас такой подарок — как частичка вашей удачи и вера в наше счастье. А цветы… пусть они останутся для нас чем-то личным и совсем необязательным. Спасибо, что вы у нас есть!
       </p>
     </section>
 

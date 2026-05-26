@@ -36,101 +36,172 @@
       width: 100%;
     }
 
-    /* ---------- СТАРТОВЫЙ ЭКРАН ---------- */
-    .welcome-overlay {
+    /* ---------- ИНТЕРАКТИВНЫЙ КОНВЕРТ (СТАРТОВЫЙ ЭКРАН) ---------- */
+    .envelope-wrapper {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('фон.png') no-repeat center center;
-      background-size: cover;
+      background-color: #f4f3ef; /* Мягкий премиальный фон за конвертом */
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
       z-index: 9999;
-      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+      perspective: 1500px;
+      transition: opacity 0.8s ease, visibility 0.8s;
     }
-    .content-box {
+
+    /* Контейнер самого конверта */
+    .envelope {
+      position: relative;
+      width: 340px;
+      height: 240px;
+      background-color: #2d4c3e;
+      border-radius: 4px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+    }
+
+    /* Общие стили для клапанов конверта */
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 0;
+      border-style: solid;
+      border-width: 120px 170px 120px 170px;
+      border-color: transparent transparent #223a2f #223a2f;
+      z-index: 3;
+      border-radius: 4px;
+    }
+    .envelope::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 0;
+      border-style: solid;
+      border-width: 120px 170px 120px 170px;
+      border-color: transparent #345747 transparent transparent;
+      z-index: 3;
+      border-radius: 4px;
+    }
+
+    /* Верхний открывающийся клапан */
+    .envelope-flap {
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 0;
+      border-style: solid;
+      border-width: 130px 170px 0 170px;
+      border-color: #243d32 transparent transparent transparent;
+      z-index: 5;
+      transform-origin: top center;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    /* Сургучная печать / Оттиск */
+    .envelope-seal {
+      position: absolute;
+      top: 110px;
+      left: 145px;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(#dfba73, #c5a059); /* Благородное золото */
+      border-radius: 50%;
+      z-index: 6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2d4c3e;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2), inset 0 0 4px rgba(0,0,0,0.2);
+      transition: opacity 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    /* Карточка с текстом внутри конверта */
+    .envelope-card {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      width: 310px;
+      height: 210px;
+      background: #ffffff;
+      z-index: 2;
+      border-radius: 2px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
       text-align: center;
-      color: #ffffff;
-      user-select: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      height: 50vh;
-      width: 100%;
-      max-width: 360px;
-      padding: 0 10px;
+      transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      border: 1px solid #dfba73; /* Золотистая тонкая рамочка */
     }
-    .title-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0px;
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-    .title-top {
-      font-size: 11px;
+
+    .card-title-top {
+      font-size: 10px;
       font-weight: 300;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      opacity: 0.9;
+      color: #888;
+      margin-bottom: 6px;
     }
-    .title-main {
+
+    .card-title-main {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 300;
-      font-size: 46px;
-      line-height: 0.95;
-      letter-spacing: 1px;
-      text-transform: none;
-      margin-top: 4px;
-      text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.25);
-    }
-    .hint-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .hint-text {
-      font-size: 10px;
-      font-weight: 300;
-      letter-spacing: 1px;
-      opacity: 0.85;
-    }
-    
-    .pointer-image-wrapper {
-      width: 52px;
-      height: 52px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: pointerTap 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .pointer-img {
-      width: 100%;
-      height: auto;
-      filter: brightness(0) invert(1);
-      drop-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      font-size: 28px;
+      color: #2d4c3e;
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
 
-    .welcome-overlay.fade-out {
+    .card-hint {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #6b6b6b;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .card-hint i {
+      animation: bounceArrow 1.2s infinite;
+    }
+
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    /* АНИМАЦИЯ ОТКРЫТИЯ (активируется через JS класс .open) */
+    .envelope.open .envelope-seal {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1; /* Опускаем за карточку */
+    }
+
+    .envelope.open .envelope-card {
+      transform: translateY(-130px); /* Выезжает наверх */
+      z-index: 4; /* Становится выше передних клапанов */
+    }
+
+    /* Исчезновение всего стартового экрана */
+    .envelope-wrapper.fade-out {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
-    
-    @keyframes pointerTap {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(0.9); }
-    }
+
 
     /* ---------- ОСНОВНОЙ КОНТЕНТ ---------- */
     .main-content {
@@ -172,13 +243,13 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 4vh 20px; /* Отступы зависят от высоты экрана */
+      padding: 4vh 20px;
     }
 
     .hero-names {
       font-family: 'Cormorant Garamond', serif;
       color: #2d4c3e; 
-      font-size: clamp(34px, 9vw, 42px); /* Адаптивный размер шрифта */
+      font-size: clamp(34px, 9vw, 42px); 
       text-transform: uppercase; 
       letter-spacing: 6px; 
       font-weight: 300;
@@ -198,7 +269,7 @@
       gap: 16px; 
       width: 100%;
       max-width: 320px;
-      margin: auto 0; /* Центрирует блок с фото по вертикали */
+      margin: auto 0;
     }
     .photo-child { 
       aspect-ratio: 3/4; 
@@ -462,16 +533,17 @@
 </head>
 <body>
 
-  <div id="welcome-screen" class="welcome-overlay">
-    <div class="content-box">
-      <div class="title-group">
-        <h1 class="title-top">Вы получили</h1>
-        <h2 class="title-main">Приглашение</h2>
-      </div>
-      <div class="hint-container">
-        <p class="hint-text">Для просмотра коснитесь экрана</p>
-        <div class="pointer-image-wrapper">
-          <img src="указатель.png" alt="Нажмите" class="pointer-img">
+  <div id="envelope-screen" class="envelope-wrapper">
+    <div class="envelope" id="main-envelope">
+      <div class="envelope-flap"></div>
+      
+      <div class="envelope-seal">Н & А</div>
+      
+      <div class="envelope-card">
+        <h1 class="card-title-top">Вы получили</h1>
+        <h2 class="card-title-main">Приглашение</h2>
+        <div class="card-hint">
+          Открыть <i class="fas fa-arrow-up"></i>
         </div>
       </div>
     </div>
@@ -662,7 +734,7 @@
         <form id="rsvpForm" action="https://formspree.io/f/mredlnvq" method="POST">
           <label class="form-label">Ваше имя и фамилия</label>
           <input type="text" name="guestName" class="form-input" placeholder="Иван Петров" required>
-          <label class="form-label">Сможете ли вы присутствовать?</label>
+          <label class="form-label">Смо сможете ли вы присутствовать?</label>
           <div class="radio-group">
             <label class="radio-option"><input type="radio" name="attendance" value="yes" required> Да, с радостью</label>
             <label class="radio-option"><input type="radio" name="attendance" value="no"> К сожалению, нет</label>
@@ -687,14 +759,24 @@
   </div>
 
   <script>
-    // Стартовый экран
-    document.getElementById('welcome-screen').addEventListener('click', function() {
-      this.classList.add('fade-out');
-      document.getElementById('main-page').classList.add('visible');
-      revealOnScroll();
+    // Логика открытия конверта
+    document.getElementById('main-envelope').addEventListener('click', function() {
+      var envelope = this;
+      var wrapper = document.getElementById('envelope-screen');
+      var mainPage = document.getElementById('main-page');
+      
+      // Добавляем класс анимации открытия клапана и выезда карточки
+      envelope.classList.add('open');
+      
+      // Даем карточке полностью выехать (700ms), затем плавно убираем экран с конвертом
+      setTimeout(function() {
+        wrapper.classList.add('fade-out');
+        mainPage.classList.add('visible');
+        revealOnScroll(); // Запуск проверки анимаций элементов при скролле
+      }, 1200);
     });
 
-    // Анимация появления
+    // Анимация появления элементов при скролле
     function revealOnScroll() {
       var reveals = document.querySelectorAll(".reveal");
       for (var i = 0; i < reveals.length; i++) {
@@ -707,11 +789,6 @@
       }
     }
     window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", function() {
-      if (document.getElementById('welcome-screen').classList.contains('fade-out')) {
-        revealOnScroll();
-      }
-    });
 
     // Вкладки дресс-кода
     function openTab(evt, tabName) {
@@ -723,7 +800,7 @@
       evt.currentTarget.classList.add("active");
     }
 
-    // Музыка
+    // Управление музыкой
     var playBtn = document.getElementById('playBtn');
     var audio = document.getElementById('music');
     var isPlaying = false;
@@ -769,7 +846,7 @@
     }
     startCountdown();
 
-    // Отправка формы
+    // Отправка формы (AJAX Formspree)
     var rsvpForm = document.getElementById('rsvpForm');
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', function(e) {

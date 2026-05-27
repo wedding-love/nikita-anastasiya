@@ -537,7 +537,7 @@
       background-size: cover; 
       background-position: center 45%; /* Смещение фокуса немного вверх */
       margin-top: -40px; /* Вытягивание вверх */
-      margin-bottom: 24px; 
+      margin-bottom: 28px; /* Увеличен отступ снизу */
       border-radius: 2px; 
     }
     .location-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 26px; color: #2d4c3e; letter-spacing: 3px; margin-bottom: 6px; }
@@ -558,6 +558,54 @@
 
     .contact-link { color: #2d4c3e; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; border-bottom: 1px solid #2d4c3e; margin: 0 14px; font-size: 16px; letter-spacing: 2px; }
     .farewell-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 28px; color: #2d4c3e; margin-top: 38px; line-height: 1.6; }
+
+    /* Медиа-запросы для адаптивности */
+    @media (max-width: 430px) {
+      section {
+        padding: 45px 16px;
+      }
+      .location-photo {
+        height: 280px;
+        margin-top: -25px;
+        margin-bottom: 24px;
+      }
+      .serif-title {
+        font-size: 28px;
+      }
+      .serif-subtitle {
+        font-size: 17px;
+        margin-bottom: 24px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      section {
+        padding: 40px 14px;
+      }
+      .location-photo {
+        height: 240px;
+        margin-top: -20px;
+        margin-bottom: 20px;
+      }
+      .location-name {
+        font-size: 22px;
+      }
+      .location-address {
+        font-size: 14px;
+      }
+      .map-btn {
+        padding: 14px 24px;
+        font-size: 12px;
+      }
+      .serif-title {
+        font-size: 24px;
+        letter-spacing: 2px;
+      }
+      .serif-subtitle {
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+    }
 
   </style>
 </head>
@@ -695,6 +743,7 @@
       </p>
     </section>
 
+    <!-- Секция "Где?" с исправленным отступом между фото и location -->
     <section class="reveal" style="background: #fafaf8;">
       <h2 class="serif-title">Где?</h2>
       <p class="serif-subtitle">location</p>

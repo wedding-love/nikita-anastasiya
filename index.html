@@ -529,7 +529,17 @@
     .tabs-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .dress-photo { width: 100%; aspect-ratio: 3/4; background-size: cover; background-position: center; background-color: #f5f3f0; border-radius: 2px; }
 
-    .location-photo { width: 100%; height: 250px; background-image: url('IMG_8415.JPG'); background-size: cover; background-position: center; margin-bottom: 24px; border-radius: 2px; }
+    /* Увеличенное фото локации с вытягиванием вверх */
+    .location-photo { 
+      width: 100%; 
+      height: 380px; /* Увеличена высота */
+      background-image: url('IMG_8415.JPG'); 
+      background-size: cover; 
+      background-position: center 45%; /* Смещение фокуса немного вверх */
+      margin-top: -40px; /* Вытягивание вверх */
+      margin-bottom: 24px; 
+      border-radius: 2px; 
+    }
     .location-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 26px; color: #2d4c3e; letter-spacing: 3px; margin-bottom: 6px; }
     .location-address { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; color: #666; line-height: 1.7; margin-bottom: 26px; }
     .map-btn { display: inline-block; text-decoration: none; background: #2d4c3e; color: #fff; padding: 16px 34px; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 14px; letter-spacing: 4px; text-transform: uppercase; transition: all 0.3s ease; }
